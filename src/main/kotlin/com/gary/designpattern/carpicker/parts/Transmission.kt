@@ -1,6 +1,16 @@
 package com.gary.designpattern.carpicker.parts
 
-class Transmission : Part{
-    override val price: Int
-        get() = 90000
+class Transmission(val type: Type) : Part{
+    override val selfPrice: Int
+        get() = when(this.type) {
+            Type.RWD -> 90000
+            Type.FWD -> 75000
+            Type.AWD -> 110000
+        }
+
+    override val totalPrice: Int = this.selfPrice
+
+    enum class Type {
+        RWD, FWD, AWD
+    }
 }

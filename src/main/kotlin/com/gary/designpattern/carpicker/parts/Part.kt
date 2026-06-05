@@ -1,5 +1,6 @@
 package com.gary.designpattern.carpicker.parts
 
 interface Part {
-    val price: Int
+    val selfPrice: Int
+    val totalPrice: Int
 }

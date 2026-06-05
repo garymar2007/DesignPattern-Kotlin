@@ -1,5 +1,9 @@
 package com.gary.designpattern.carpicker
 
+import com.gary.designpattern.carpicker.parts.Chasis
+import com.gary.designpattern.carpicker.parts.Engine
+import com.gary.designpattern.carpicker.parts.Transmission
+import com.gary.designpattern.carpicker.parts.WheelBase
 import com.gary.designpattern.carpicker.vehicle.Vehicle
 
 class Main {
@@ -9,8 +13,45 @@ class Main {
         fun main(args: Array<String>) {
             println("Hello World!")
 
-            val vehicle = Vehicle()
-            println(vehicle.price)
+            // Apply the composition pattern
+            // Key takeaway: the parts are independent of each other,
+            // and the vehicle is composed of the parts.
+            // This allows for flexibility in creating different vehicles with different combinations of parts.
+            val byd = Vehicle(
+                WheelBase(
+                    size = WheelBase.Size.SMALL,
+                    chasis = Chasis(Chasis.Type.SEDAN)
+                ),
+                Engine(
+                    type = Engine.Type.ELECTRIC,
+                    transmission = Transmission(type = Transmission.Type.FWD)
+                )
+            )
+
+            val hondaCity = Vehicle(
+                WheelBase(
+                    size = WheelBase.Size.MEDIUM,
+                    chasis = Chasis(Chasis.Type.SEDAN)
+                ),
+                Engine(
+                    type = Engine.Type.DIESEL,
+                    transmission = Transmission(type = Transmission.Type.FWD)
+                )
+            )
+
+            val BMWX7 = Vehicle(
+                WheelBase(
+                    size = WheelBase.Size.LARGE,
+                    chasis = Chasis(Chasis.Type.SUV)
+                ),
+                Engine(
+                    type = Engine.Type.HYBRID,
+                    transmission = Transmission(type = Transmission.Type.AWD)
+                )
+            )
+            println("The price for Honda City is: R" + hondaCity.price)
+            println("The price for BYD is: R" + byd.price)
+            println("The price for BMW X7 is: R" + BMWX7.price)
         }
     }
 }
