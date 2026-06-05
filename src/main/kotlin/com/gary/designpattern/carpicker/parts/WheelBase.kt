@@ -1,11 +1,18 @@
 package com.gary.designpattern.carpicker.parts
 
+import com.gary.designpattern.carpicker.parts.wheel.Wheel
+import com.gary.designpattern.carpicker.parts.wheel.WheelFactory
+
 class WheelBase(
     val size: Size,
     val chasis: Chasis,
+    val wheelFactory: WheelFactory,
 ) : Part {
     val wheels: List<Wheel> = listOf(
-        Wheel(), Wheel(), Wheel(), Wheel()
+        wheelFactory.createWheel(),
+        wheelFactory.createWheel(),
+        wheelFactory.createWheel(),
+        wheelFactory.createWheel()
     )
 
     override val selfPrice: Int

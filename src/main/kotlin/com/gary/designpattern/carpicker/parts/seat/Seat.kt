@@ -1,4 +1,6 @@
-package com.gary.designpattern.carpicker.parts
+package com.gary.designpattern.carpicker.parts.seat
+
+import com.gary.designpattern.carpicker.parts.Part
 
 class Seat : Part {
 

@@ -1,5 +1,7 @@
 package com.gary.designpattern.carpicker.parts
 
+import com.gary.designpattern.carpicker.parts.seat.Seat
+
 class Chasis(val type: Type) : Part {
     val seats: List<Seat> = listOf(
         Seat(), Seat(), Seat(), Seat()
