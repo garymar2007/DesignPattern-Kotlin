@@ -4,8 +4,8 @@ import com.gary.designpattern.carpicker.parts.Chasis
 import com.gary.designpattern.carpicker.parts.Engine
 import com.gary.designpattern.carpicker.parts.Transmission
 import com.gary.designpattern.carpicker.parts.WheelBase
+import com.gary.designpattern.carpicker.parts.seat.Seat
 import com.gary.designpattern.carpicker.parts.wheel.Wheel
-import com.gary.designpattern.carpicker.parts.wheel.WheelFactory
 import com.gary.designpattern.carpicker.vehicle.Vehicle
 
 class Main {
@@ -22,8 +22,8 @@ class Main {
             val byd = Vehicle(
                 WheelBase(
                     size = WheelBase.Size.SMALL,
-                    chasis = Chasis(Chasis.Type.SEDAN),
-                    wheelFactory = WheelFactory(Wheel.Type.STEEL)
+                    chasis = Chasis(Chasis.Type.SEDAN, Seat.Factory(Seat.Upholstery.LEATHER)),
+                    wheelFactory = Wheel.Factory(Wheel.Type.STEEL)
                 ),
                 Engine(
                     type = Engine.Type.ELECTRIC,
@@ -34,8 +34,8 @@ class Main {
             val hondaCity = Vehicle(
                 WheelBase(
                     size = WheelBase.Size.MEDIUM,
-                    chasis = Chasis(Chasis.Type.SEDAN),
-                    wheelFactory = WheelFactory(Wheel.Type.ALLOY)
+                    chasis = Chasis(Chasis.Type.SEDAN, Seat.Factory(Seat.Upholstery.FABRIC)),
+                    wheelFactory = Wheel.Factory(Wheel.Type.ALLOY)
                 ),
                 Engine(
                     type = Engine.Type.DIESEL,
@@ -46,8 +46,8 @@ class Main {
             val BMWX7 = Vehicle(
                 WheelBase(
                     size = WheelBase.Size.LARGE,
-                    chasis = Chasis(Chasis.Type.SUV),
-                    wheelFactory = WheelFactory(Wheel.Type.CARBONFIBRE)
+                    chasis = Chasis(Chasis.Type.SUV, Seat.Factory(Seat.Upholstery.VINYL)),
+                    wheelFactory = Wheel.Factory(Wheel.Type.CARBONFIBRE)
                 ),
                 Engine(
                     type = Engine.Type.HYBRID,

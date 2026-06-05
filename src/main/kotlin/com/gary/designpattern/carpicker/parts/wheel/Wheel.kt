@@ -15,4 +15,10 @@ class Wheel(
     override val totalPrice: Int = this.selfPrice
 
     enum class Type { STEEL, ALLOY, CARBONFIBRE }
+
+    class Factory(
+        val type: Type
+    ) {
+        fun createWheel(): Wheel = Wheel(type)
+    }
 }

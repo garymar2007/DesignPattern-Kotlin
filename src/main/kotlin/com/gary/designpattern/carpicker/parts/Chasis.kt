@@ -2,11 +2,16 @@ package com.gary.designpattern.carpicker.parts
 
 import com.gary.designpattern.carpicker.parts.seat.Seat
 
-class Chasis(val type: Type) : Part {
+class Chasis(
+    val type: Type,
+    val seatFactory: Seat.Factory,
+) : Part {
     val seats: List<Seat> = listOf(
-        Seat(), Seat(), Seat(), Seat()
+        seatFactory.createSeat(),
+        seatFactory.createSeat(),
+        seatFactory.createSeat(),
+        seatFactory.createSeat(),
     )
-
     override val selfPrice: Int
         get() = when(this.type) {
             Type.SEDAN -> 150000
