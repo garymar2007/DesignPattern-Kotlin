@@ -22,7 +22,10 @@ class Main {
             val byd = Vehicle(
                 WheelBase(
                     size = WheelBase.Size.SMALL,
-                    chasis = Chasis(Chasis.Type.SEDAN, Seat.Factory(Seat.Upholstery.LEATHER)),
+                    chasis = Chasis(
+                        type = Chasis.Type.SEDAN,
+                        seatFactory = Seat.Factory(Seat.Upholstery.LEATHER)
+                    ),
                     wheelFactory = Wheel.Factory(Wheel.Type.STEEL)
                 ),
                 Engine(
@@ -34,7 +37,10 @@ class Main {
             val hondaCity = Vehicle(
                 WheelBase(
                     size = WheelBase.Size.MEDIUM,
-                    chasis = Chasis(Chasis.Type.SEDAN, Seat.Factory(Seat.Upholstery.FABRIC)),
+                    chasis = Chasis(
+                        type = Chasis.Type.SEDAN,
+                        seatFactory = Seat.Factory(Seat.Upholstery.FABRIC)
+                    ),
                     wheelFactory = Wheel.Factory(Wheel.Type.ALLOY)
                 ),
                 Engine(
@@ -46,7 +52,10 @@ class Main {
             val BMWX7 = Vehicle(
                 WheelBase(
                     size = WheelBase.Size.LARGE,
-                    chasis = Chasis(Chasis.Type.SUV, Seat.Factory(Seat.Upholstery.VINYL)),
+                    chasis = Chasis(
+                        type = Chasis.Type.SUV,
+                        seatFactory = Seat.Factory(Seat.Upholstery.VINYL)
+                    ),
                     wheelFactory = Wheel.Factory(Wheel.Type.CARBONFIBRE)
                 ),
                 Engine(
