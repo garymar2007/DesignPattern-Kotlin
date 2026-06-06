@@ -2,7 +2,7 @@ package com.gary.designpattern.carpicker.parts
 
 import com.gary.designpattern.carpicker.parts.wheel.Wheel
 
-class WheelBase(
+class WheelBase private constructor(
     val size: Size,
     val chasis: Chasis,
     val wheelFactory: Wheel.Factory,
@@ -32,5 +32,36 @@ class WheelBase(
 
     enum class Size {
         SMALL, MEDIUM, LARGE
+    }
+
+    class Builder {
+        lateinit var size: Size
+        lateinit var chasis: Chasis
+        lateinit var wheelFactory: Wheel.Factory
+        var spareWheel: Boolean = false
+
+        fun setSize(size: Size): Builder {
+            this.size = size
+            return this
+        }
+
+        fun setChasis(chasis: Chasis): Builder {
+            this.chasis = chasis
+            return this
+        }
+
+        fun setWheelFactory(wheelFactory: Wheel.Factory): Builder {
+            this.wheelFactory = wheelFactory
+            return this
+        }
+
+        fun setSpareWheel(spareWheel: Boolean): Builder {
+            this.spareWheel = spareWheel
+            return this
+        }
+
+        fun build(): WheelBase {
+            return WheelBase(this.size, this.chasis, this.wheelFactory, this.spareWheel)
+        }
     }
 }

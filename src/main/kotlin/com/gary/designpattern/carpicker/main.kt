@@ -82,20 +82,21 @@ class Main {
                 return
             }
 
-            val wheelbaseSize = when(Terminal().prompt("Enter wheelbase size: [S|M|L]")?.uppercase()) {
-                "S" -> WheelBase.Size.SMALL
-                "M" -> WheelBase.Size.MEDIUM
-                "L" -> WheelBase.Size.LARGE
+            val wheelBaseBuilder = WheelBase.Builder()
+            when(Terminal().prompt("Enter wheelbase size: [S|M|L]")?.uppercase()) {
+                "S" -> wheelBaseBuilder.setSize(WheelBase.Size.SMALL)
+                "M" -> wheelBaseBuilder.setSize(WheelBase.Size.MEDIUM)
+                "L" -> wheelBaseBuilder.setSize(WheelBase.Size.LARGE)
                 else -> throw IllegalArgumentException("Invalid wheelbase size")
             }
 
             val chasisBuilder = Chasis.Builder()
 
             when(Terminal().prompt("Enter chasis type: [Suv|Hatchback|Pickup|Sedan]")?.uppercase()) {
-                "SUV" -> chasisBuilder.setChasisType(Chasis.Type.SUV).build()
-                "HATCHBACK" -> chasisBuilder.setChasisType(Chasis.Type.HATCHBACK).build()
-                "PICKUP" -> chasisBuilder.setChasisType(Chasis.Type.PICKUP).build()
-                "SEDAN" -> chasisBuilder.setChasisType(Chasis.Type.SEDAN).build()
+                "SUV" -> chasisBuilder.setChasisType(Chasis.Type.SUV)
+                "HATCHBACK" -> chasisBuilder.setChasisType(Chasis.Type.HATCHBACK)
+                "PICKUP" -> chasisBuilder.setChasisType(Chasis.Type.PICKUP)
+                "SEDAN" -> chasisBuilder.setChasisType(Chasis.Type.SEDAN)
                 else -> throw IllegalArgumentException("Invalid chasis type")
             }
 
@@ -107,6 +108,7 @@ class Main {
             }
 
             chasisBuilder.setSeatFactory(Seat.Factory(seatUpholstery))
+            wheelBaseBuilder.setChasis(chasisBuilder.build())
 
             val wheelType = when(Terminal().prompt("Enter wheel type: [STEEL|ALLOY|CARBONFIBRE]")?.uppercase()) {
                 "STEEL" -> Wheel.Type.STEEL
@@ -115,27 +117,28 @@ class Main {
                 else -> throw IllegalArgumentException("Invalid wheel type")
             }
 
+            wheelBaseBuilder.setWheelFactory(Wheel.Factory(wheelType))
+            wheelBaseBuilder.setSpareWheel(Terminal()
+                .prompt("Do you want to add a spare wheel? (Y/N)")?.uppercase() == "Y"
+            )
+
             val engineBuilder = Engine.Builder()
             when(Terminal().prompt("Enter engine type: [ELECTRIC|HYBRID|DIESEL]")?.uppercase()) {
-                "ELECTRIC" -> engineBuilder.setEngineType(Engine.Type.ELECTRIC).build()
-                "HYBRID" -> engineBuilder.setEngineType(Engine.Type.HYBRID).build()
-                "DIESEL" -> engineBuilder.setEngineType(Engine.Type.DIESEL).build()
+                "ELECTRIC" -> engineBuilder.setEngineType(Engine.Type.ELECTRIC)
+                "HYBRID" -> engineBuilder.setEngineType(Engine.Type.HYBRID)
+                "DIESEL" -> engineBuilder.setEngineType(Engine.Type.DIESEL)
                 else -> throw IllegalArgumentException("Invalid engine type")
             }
 
             when(Terminal().prompt("Enter transmission type: [FWD|RWD|AWD]")?.uppercase()) {
-                "FWD" -> engineBuilder.setTransmission(Transmission.Type.FWD).build()
-                "RWD" -> engineBuilder.setTransmission(Transmission.Type.RWD).build()
-                "AWD" -> engineBuilder.setTransmission(Transmission.Type.AWD).build()
+                "FWD" -> engineBuilder.setTransmission(Transmission.Type.FWD)
+                "RWD" -> engineBuilder.setTransmission(Transmission.Type.RWD)
+                "AWD" -> engineBuilder.setTransmission(Transmission.Type.AWD)
                 else -> throw IllegalArgumentException("Invalid transmission type")
             }
 
             val myCar = Vehicle(
-                WheelBase(
-                    size = wheelbaseSize,
-                    chasis = chasisBuilder.build(),
-                    wheelFactory = Wheel.Factory(wheelType)
-                ),
+                wheelBaseBuilder.build(),
                 engineBuilder.build()
             )
 

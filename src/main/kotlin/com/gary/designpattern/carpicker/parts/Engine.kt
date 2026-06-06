@@ -20,8 +20,8 @@ class Engine private constructor(
     }
 
     class Builder {
-        lateinit var engineType: Type
-        lateinit var transmission: Transmission.Type
+        private lateinit var engineType: Type
+        private lateinit var transmission: Transmission.Type
 
         fun setEngineType(engineType: Type): Builder {
             this.engineType = engineType
