@@ -89,11 +89,13 @@ class Main {
                 else -> throw IllegalArgumentException("Invalid wheelbase size")
             }
 
-            val chasisType = when(Terminal().prompt("Enter chasis type: [SUV|Hatchback|Pickup|Sedan]")?.uppercase()) {
-                "SUV" -> Chasis.Type.SUV
-                "HATCHBACK" -> Chasis.Type.HATCHBACK
-                "PICKUP" -> Chasis.Type.PICKUP
-                "SEDAN" -> Chasis.Type.SEDAN
+            val chasisBuilder = Chasis.Builder()
+
+            when(Terminal().prompt("Enter chasis type: [Suv|Hatchback|Pickup|Sedan]")?.uppercase()) {
+                "SUV" -> chasisBuilder.setChasisType(Chasis.Type.SUV).build()
+                "HATCHBACK" -> chasisBuilder.setChasisType(Chasis.Type.HATCHBACK).build()
+                "PICKUP" -> chasisBuilder.setChasisType(Chasis.Type.PICKUP).build()
+                "SEDAN" -> chasisBuilder.setChasisType(Chasis.Type.SEDAN).build()
                 else -> throw IllegalArgumentException("Invalid chasis type")
             }
 
@@ -103,6 +105,8 @@ class Main {
                 "VINYL" -> Seat.Upholstery.VINYL
                 else -> throw IllegalArgumentException("Invalid seat upholstery")
             }
+
+            chasisBuilder.setSeatFactory(Seat.Factory(seatUpholstery))
 
             val wheelType = when(Terminal().prompt("Enter wheel type: [STEEL|ALLOY|CARBONFIBRE]")?.uppercase()) {
                 "STEEL" -> Wheel.Type.STEEL
@@ -128,10 +132,7 @@ class Main {
             val myCar = Vehicle(
                 WheelBase(
                     size = wheelbaseSize,
-                    chasis = Chasis(
-                        type = chasisType,
-                        seatFactory = Seat.Factory(seatUpholstery)
-                    ),
+                    chasis = chasisBuilder.build(),
                     wheelFactory = Wheel.Factory(wheelType)
                 ),
                 Engine(

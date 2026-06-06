@@ -2,7 +2,7 @@ package com.gary.designpattern.carpicker.parts
 
 import com.gary.designpattern.carpicker.parts.seat.Seat
 
-class Chasis(
+class Chasis private constructor(
     val type: Type,
     val seatFactory: Seat.Factory,
 ) : Part {
@@ -31,5 +31,24 @@ class Chasis(
 
     enum class Type {
         SEDAN, SUV, HATCHBACK, PICKUP
+    }
+
+    class Builder {
+        lateinit var chasisType: Type
+        lateinit var seatFactory: Seat.Factory
+
+        fun setChasisType(chasisType: Type): Builder {
+            this.chasisType = chasisType
+            return this
+        }
+
+        fun setSeatFactory(seatFactory: Seat.Factory): Builder {
+            this.seatFactory = seatFactory
+            return this
+        }
+
+        fun build(): Chasis {
+            return Chasis(this.chasisType, this.seatFactory)
+        }
     }
 }
