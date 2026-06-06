@@ -10,6 +10,9 @@ repositories {
 }
 
 dependencies {
+    runtimeOnly("com.github.ajalt.clikt:clikt-jvm:5.1.0")
+    // optional support for rendering markdown in help messages
+    implementation("com.github.ajalt.clikt:clikt-markdown:5.1.0")
     testImplementation(kotlin("test"))
 }
 
