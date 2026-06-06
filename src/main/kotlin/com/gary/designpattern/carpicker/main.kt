@@ -115,17 +115,18 @@ class Main {
                 else -> throw IllegalArgumentException("Invalid wheel type")
             }
 
-            val engineType = when(Terminal().prompt("Enter engine type: [ELECTRIC|HYBRID|DIESEL]")?.uppercase()) {
-                "ELECTRIC" -> Engine.Type.ELECTRIC
-                "HYBRID" -> Engine.Type.HYBRID
-                "DIESEL" -> Engine.Type.DIESEL
+            val engineBuilder = Engine.Builder()
+            when(Terminal().prompt("Enter engine type: [ELECTRIC|HYBRID|DIESEL]")?.uppercase()) {
+                "ELECTRIC" -> engineBuilder.setEngineType(Engine.Type.ELECTRIC).build()
+                "HYBRID" -> engineBuilder.setEngineType(Engine.Type.HYBRID).build()
+                "DIESEL" -> engineBuilder.setEngineType(Engine.Type.DIESEL).build()
                 else -> throw IllegalArgumentException("Invalid engine type")
             }
 
-            val transmissionType = when(Terminal().prompt("Enter transmission type: [FWD|RWD|AWD]")?.uppercase()) {
-                "FWD" -> Transmission.Type.FWD
-                "RWD" -> Transmission.Type.RWD
-                "AWD" -> Transmission.Type.AWD
+            when(Terminal().prompt("Enter transmission type: [FWD|RWD|AWD]")?.uppercase()) {
+                "FWD" -> engineBuilder.setTransmission(Transmission.Type.FWD).build()
+                "RWD" -> engineBuilder.setTransmission(Transmission.Type.RWD).build()
+                "AWD" -> engineBuilder.setTransmission(Transmission.Type.AWD).build()
                 else -> throw IllegalArgumentException("Invalid transmission type")
             }
 
@@ -135,10 +136,7 @@ class Main {
                     chasis = chasisBuilder.build(),
                     wheelFactory = Wheel.Factory(wheelType)
                 ),
-                Engine(
-                    type = engineType,
-                    transmission = Transmission(type = transmissionType)
-                )
+                engineBuilder.build()
             )
 
             println("The price for my car is: R" + myCar.price)

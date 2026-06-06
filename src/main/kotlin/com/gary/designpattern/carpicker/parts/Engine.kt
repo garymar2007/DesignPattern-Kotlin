@@ -1,6 +1,6 @@
 package com.gary.designpattern.carpicker.parts
 
-class Engine(
+class Engine private constructor(
     val type: Type,
     val transmission: Transmission
 ) : Part {
@@ -17,5 +17,24 @@ class Engine(
 
     enum class Type {
         DIESEL, GASOLINE, HYBRID, ELECTRIC
+    }
+
+    class Builder {
+        lateinit var engineType: Type
+        lateinit var transmission: Transmission.Type
+
+        fun setEngineType(engineType: Type): Builder {
+            this.engineType = engineType
+            return this
+        }
+
+        fun setTransmission(transmission: Transmission.Type): Builder {
+            this.transmission = transmission
+            return this
+        }
+
+        fun build(): Engine {
+            return Engine(this.engineType, Transmission(this.transmission))
+        }
     }
 }
