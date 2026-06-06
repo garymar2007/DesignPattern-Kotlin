@@ -6,13 +6,19 @@ class WheelBase(
     val size: Size,
     val chasis: Chasis,
     val wheelFactory: Wheel.Factory,
+    val spareWheel: Boolean = false,
 ) : Part {
-    val wheels: List<Wheel> = listOf(
-        wheelFactory.createWheel(),
-        wheelFactory.createWheel(),
-        wheelFactory.createWheel(),
+    val numberOfWheels = when(this.size) {
+        Size.SMALL -> 2
+        Size.MEDIUM -> 4
+        Size.LARGE -> 6
+    }
+
+    val totalNumberOfWheels = if(this.spareWheel) numberOfWheels + 1 else numberOfWheels
+
+    val wheels: List<Wheel> = generateSequence {
         wheelFactory.createWheel()
-    )
+    }.take(totalNumberOfWheels).toList()
 
     override val selfPrice: Int
         get() = when (this.size) {

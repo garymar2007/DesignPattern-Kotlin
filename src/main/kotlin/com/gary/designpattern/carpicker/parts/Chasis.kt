@@ -6,12 +6,18 @@ class Chasis(
     val type: Type,
     val seatFactory: Seat.Factory,
 ) : Part {
-    val seats: List<Seat> = listOf(
-        seatFactory.createSeat(),
-        seatFactory.createSeat(),
-        seatFactory.createSeat(),
-        seatFactory.createSeat(),
-    )
+    val numberOfSeats = when(this.type) {
+        Type.SEDAN -> 5
+        Type.SUV -> 8
+        Type.HATCHBACK -> 4
+        Type.PICKUP -> 6
+    }
+
+    val seats: List<Seat> = generateSequence {
+        seatFactory.createSeat()
+    }.take(numberOfSeats)
+        .toList()
+
     override val selfPrice: Int
         get() = when(this.type) {
             Type.SEDAN -> 150000

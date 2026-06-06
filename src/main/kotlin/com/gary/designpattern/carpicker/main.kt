@@ -26,7 +26,8 @@ class Main {
                         type = Chasis.Type.SEDAN,
                         seatFactory = Seat.Factory(Seat.Upholstery.LEATHER)
                     ),
-                    wheelFactory = Wheel.Factory(Wheel.Type.STEEL)
+                    wheelFactory = Wheel.Factory(Wheel.Type.STEEL),
+                    spareWheel = true,
                 ),
                 Engine(
                     type = Engine.Type.ELECTRIC,
@@ -56,7 +57,8 @@ class Main {
                         type = Chasis.Type.SUV,
                         seatFactory = Seat.Factory(Seat.Upholstery.VINYL)
                     ),
-                    wheelFactory = Wheel.Factory(Wheel.Type.CARBONFIBRE)
+                    wheelFactory = Wheel.Factory(Wheel.Type.CARBONFIBRE),
+                    spareWheel = true,
                 ),
                 Engine(
                     type = Engine.Type.HYBRID,
