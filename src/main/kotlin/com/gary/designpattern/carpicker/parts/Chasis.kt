@@ -4,19 +4,8 @@ import com.gary.designpattern.carpicker.parts.seat.Seat
 
 class Chasis private constructor(
     val type: Type,
-    val seatFactory: Seat.Factory,
+    val seats: List<Seat>,
 ) : Part {
-    val numberOfSeats = when(this.type) {
-        Type.SEDAN -> 5
-        Type.SUV -> 8
-        Type.HATCHBACK -> 4
-        Type.PICKUP -> 6
-    }
-
-    val seats: List<Seat> = generateSequence {
-        seatFactory.createSeat()
-    }.take(numberOfSeats)
-        .toList()
 
     override val selfPrice: Int
         get() = when(this.type) {
@@ -48,7 +37,14 @@ class Chasis private constructor(
         }
 
         fun build(): Chasis {
-            return Chasis(this.chasisType, this.seatFactory)
+            val numSeats = when(this.chasisType) {
+                    Type.SEDAN -> 5
+                    Type.SUV -> 8
+                    Type.HATCHBACK -> 4
+                    Type.PICKUP -> 6
+            }
+
+            return Chasis(this.chasisType, this.seatFactory.createSeat(numSeats = numSeats))
         }
     }
 }

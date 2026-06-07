@@ -19,6 +19,8 @@ class Wheel(
     class Factory(
         val type: Type
     ) {
-        fun createWheel(): Wheel = Wheel(type)
+        fun createWheel(numWheels: Int): List<Wheel> {
+          return generateSequence { Wheel(type) }.take(numWheels).toList()
+        }
     }
 }

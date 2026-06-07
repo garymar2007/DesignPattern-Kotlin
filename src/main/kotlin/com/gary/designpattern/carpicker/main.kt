@@ -108,7 +108,6 @@ class Main {
             }
 
             chasisBuilder.setSeatFactory(Seat.Factory(seatUpholstery))
-            wheelBaseBuilder.setChasis(chasisBuilder.build())
 
             val wheelType = when(Terminal().prompt("Enter wheel type: [STEEL|ALLOY|CARBONFIBRE]")?.uppercase()) {
                 "STEEL" -> Wheel.Type.STEEL
@@ -137,14 +136,16 @@ class Main {
                 else -> throw IllegalArgumentException("Invalid transmission type")
             }
 
-            val myCar = Vehicle(
-                wheelBaseBuilder.build(),
-                engineBuilder.build()
-            )
+            val myCar = Vehicle.Builder()
+                .setWheelBase(wheelBaseBuilder.build())
+                .setChasis(chasisBuilder.build())
+                .setEngine(engineBuilder.build())
+                .build()
+
 
             println("The price for my car is: R" + myCar.price)
-            println("The Total Wheels that my car has: " + myCar.wheelBase.totalNumberOfWheels)
-            println("The number of seats that my car has: " + myCar.wheelBase.chasis.numberOfSeats)
+            println("The Total Wheels that my car has: " + myCar.totalNumberOfWheels)
+            println("The number of seats that my car has: " + myCar.totalNumberOfSeats)
         }
     }
 }

@@ -20,6 +20,8 @@ class Seat(val upholstery: Upholstery) : Part {
     class Factory(
         val upholstery: Upholstery
     ) {
-        fun createSeat(): Seat = Seat(upholstery)
+        fun createSeat(numSeats: Int): List<Seat> {
+            return generateSequence { Seat(upholstery) }.take(numSeats).toList()
+        }
     }
 }

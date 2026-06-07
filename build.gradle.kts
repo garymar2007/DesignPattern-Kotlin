@@ -13,10 +13,11 @@ dependencies {
     runtimeOnly("com.github.ajalt.clikt:clikt-jvm:5.1.0")
     // optional support for rendering markdown in help messages
     implementation("com.github.ajalt.clikt:clikt-markdown:5.1.0")
-    testImplementation(kotlin("test"))
+    testImplementation("io.kotest:kotest-framework-engine:5.9.1")
+    testImplementation("io.kotest:kotest-runner-junit5:5.9.1")
 }
 
-tasks.test {
+tasks.withType<Test> {
     useJUnitPlatform()
 }
 kotlin {
