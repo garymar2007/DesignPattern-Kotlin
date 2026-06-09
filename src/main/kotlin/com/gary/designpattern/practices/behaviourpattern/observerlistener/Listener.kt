@@ -2,6 +2,12 @@ package com.gary.designpattern.practices.behaviourpattern.observerlistener
 
 import kotlin.properties.Delegates
 
+/**
+ * 观察者模式Observer
+ *
+ * 功能:文本框内容变化时通知其他监听器发生变化
+ *
+ */
 class Listener {
 
     interface TextChangedListener {

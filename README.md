@@ -6,7 +6,7 @@
 
 * [Behavioral Patterns](#behavioral)
   * [Observer / Listener](#observer--listener)
-  * 
+  * [Strategy](#strategy)
 * [Creational Patterns] (#creational)
 
 
@@ -49,4 +49,19 @@ class TextView {
 }
 ```
 
-#### Usage
+[Strategy](/practice/behaviourpattern/strategy/Strategy.kt)
+---------
+The strategy pattern is used to create an interchangeable family of algorithms from which the required process is chosen at run-time.
+
+#### Example
+```kotlin
+class Printer(private val stringFormatterStrategy: (String) -> String) {
+
+    fun printString(string: String) {
+        println(stringFormatterStrategy(string))
+    }
+}
+
+val lowerCaseFormatter: (String) -> String = { it.toLowerCase() }
+val upperCaseFormatter = { it: String -> it.toUpperCase() }
+```
