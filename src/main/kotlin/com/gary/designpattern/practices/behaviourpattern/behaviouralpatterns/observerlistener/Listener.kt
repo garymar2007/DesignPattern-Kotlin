@@ -1,4 +1,4 @@
-package com.gary.designpattern.practices.behaviourpattern.observerlistener
+package com.gary.designpattern.practices.behaviourpattern.behaviouralpatterns.observerlistener
 
 import kotlin.properties.Delegates
 

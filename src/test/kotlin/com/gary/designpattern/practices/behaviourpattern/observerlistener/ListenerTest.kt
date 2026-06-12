@@ -1,5 +1,6 @@
 package com.gary.designpattern.practices.behaviourpattern.observerlistener
 
+import com.gary.designpattern.practices.behaviourpattern.behaviouralpatterns.observerlistener.Listener
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe

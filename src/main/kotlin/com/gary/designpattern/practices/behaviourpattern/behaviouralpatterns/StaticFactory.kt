@@ -1,4 +1,4 @@
-package com.gary.designpattern.practices.behaviourpattern.factory
+package com.gary.designpattern.practices.behaviourpattern.behaviouralpatterns.factory
 
 /**
  *   像 Java 中的静态方法一样，调用companion对象不需要实例化一个类：

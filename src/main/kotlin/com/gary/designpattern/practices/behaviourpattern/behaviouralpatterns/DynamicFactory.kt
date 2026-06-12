@@ -1,4 +1,4 @@
-package com.gary.designpattern.practices.behaviourpattern.factory
+package com.gary.designpattern.practices.behaviourpattern.behaviouralpatterns.factory
 
 interface Animal {
     val id: Int
