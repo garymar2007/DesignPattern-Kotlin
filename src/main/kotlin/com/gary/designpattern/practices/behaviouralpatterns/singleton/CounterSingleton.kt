@@ -1,4 +1,4 @@
-package com.gary.designpattern.practices.behaviourpattern.behaviouralpatterns.singleton
+package com.gary.designpattern.practices.behaviouralpatterns.singleton
 
 import java.util.concurrent.atomic.AtomicInteger
 

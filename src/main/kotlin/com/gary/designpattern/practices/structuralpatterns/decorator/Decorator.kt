@@ -1,4 +1,4 @@
-package com.gary.designpattern.practices.behaviourpattern.structuralpatterns.decorator
+package com.gary.designpattern.practices.structuralpatterns.decorator
 
 class Decorator {
 }

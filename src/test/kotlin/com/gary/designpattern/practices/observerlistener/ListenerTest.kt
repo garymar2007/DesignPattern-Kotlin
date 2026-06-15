@@ -1,4 +1,4 @@
-package com.gary.designpattern.practices.behaviourpattern.observerlistener
+package com.gary.designpattern.practices.observerlistener
 
 import com.gary.designpattern.practices.behaviourpattern.behaviouralpatterns.observerlistener.Listener
 import io.kotest.core.spec.style.DescribeSpec
