@@ -1,8 +1,5 @@
 package com.gary.designpattern.practices.structuralpatterns.decorator
 
-class Decorator {
-}
-
 class HappyMap<K,V> : HashMap<K,V>() {
     override fun put(key: K, value: V): V? {
         return super.put(key, value).apply {

@@ -1,4 +1,4 @@
-package com.gary.designpattern.practices.behaviouralpatterns.builder
+package com.gary.designpattern.practices.creational.builder
 
 import java.io.File
 
