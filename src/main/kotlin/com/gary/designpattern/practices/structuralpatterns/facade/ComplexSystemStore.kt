@@ -21,7 +21,7 @@ class ComplexSystemStore(private val filePath: String) {
 data class User(val login: String)
 
 /**
- *  Facade Pattern - hide the complexity in the background
+ *  Fa`cade Pattern - hide the complexity in the background
   */
 class UserRepository {
     private val systemPreferences = ComplexSystemStore("~/garymar2007/DesignPattern-Kotlin/cache")
