@@ -1,6 +1,6 @@
 package com.gary.designpattern.strategy;
 
-public class Cat implements MyComparable{
+public class Cat implements MyComparable<Cat>{
     int weight, height;
 
     public Cat(int weight, int height) {
@@ -17,8 +17,7 @@ public class Cat implements MyComparable{
     }
 
     @Override
-    public int compareTo(Object o) {
-        Cat c = (Cat)o;
+    public int compareTo(Cat c) {
         if (this.weight < c.weight) return -1;
         else if (this.weight > c.weight) return 1;
         else return 0;

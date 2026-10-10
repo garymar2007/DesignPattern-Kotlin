@@ -1,5 +1,5 @@
 package com.gary.designpattern.strategy;
 
-public interface MyComparable {
-    int compareTo(Object o);
+public interface MyComparable<T> {
+    int compareTo(T o);
 }

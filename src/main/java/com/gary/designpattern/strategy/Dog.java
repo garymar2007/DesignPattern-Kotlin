@@ -1,6 +1,6 @@
 package com.gary.designpattern.strategy;
 
-public class Dog implements MyComparable{
+public class Dog implements MyComparable<Dog>{
     int size;
 
     public Dog(int size) {
@@ -15,10 +15,9 @@ public class Dog implements MyComparable{
     }
 
     @Override
-    public int compareTo(Object o) {
-        Dog c = (Dog)o;
-        if (this.size < c.size) return -1;
-        else if (this.size > c.size) return 1;
+    public int compareTo(Dog o) {
+        if (this.size < o.size) return -1;
+        else if (this.size > o.size) return 1;
         else return 0;
     }
 }
